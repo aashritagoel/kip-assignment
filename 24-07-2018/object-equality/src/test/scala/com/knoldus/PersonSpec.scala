@@ -10,13 +10,13 @@ class PersonSpec extends FunSuite with MustMatchers {
   val personTwo = new Person("Aashrita", "Goel")
 
   test("To check if personOne is present in same bucket of HashSet"){
-    val actualResult = collection contains(personOne)
+    val actualResult = collection contains personOne
     val expectedResult = true
     actualResult must equal(expectedResult)
   }
 
   test("To check if personOne is present in collection"){
-    val actualResult = collection.iterator contains(personOne)
+    val actualResult = collection.iterator contains personOne
     val expectedResult = true
     actualResult must equal(expectedResult)
   }
