@@ -16,10 +16,10 @@ class Twitter{
 
     val config = new ConfigurationBuilder
     config.setDebugEnabled(true)
-      .setOAuthConsumerKey("U4vRNr1ZCY7jCnDCsEzaOqKgH")
-      .setOAuthConsumerSecret("mE0pCdTUcsnATZrResDAb5by79X4tvrZXGJmJbCS48ILSKwsBR")
-      .setOAuthAccessToken("723372793270665217-cD2bicHmEKovD0uYk80z3IOEh8TAeOQ")
-      .setOAuthAccessTokenSecret("zn8toS7lkOBXDlbIHX3RwdCkZNR1E5EGqvzkEStL8bSW7")
+      .setOAuthConsumerKey("consumer-key")
+      .setOAuthConsumerSecret("consumer-secret")
+      .setOAuthAccessToken("access-token")
+      .setOAuthAccessTokenSecret("access-token-secret")
   }
 
   def retrieveTweet(input :String) :util.List[Status] = {

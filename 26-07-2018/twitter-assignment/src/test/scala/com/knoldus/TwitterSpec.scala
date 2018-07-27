@@ -30,7 +30,7 @@ class TwitterSpec extends AsyncFlatSpec {
 
   it should "give exception when there exists no tweet for the input string while computing average re-tweet per tweet" in {
     recoverToSucceededIf[ArithmeticException]{
-      test.getAverageLikes("kjhhggd")
+      test.getAverageReTweets("kjhhggd")
     }
   }
 }
