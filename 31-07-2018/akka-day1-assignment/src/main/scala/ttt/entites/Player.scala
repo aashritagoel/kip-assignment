@@ -4,9 +4,8 @@ import akka.actor.{Actor, ActorRef, PoisonPill}
 
 class Player extends Actor with TicTacToeMapper {
   override def receive: PartialFunction[Any, Unit] = {
-    //case g => println(g)
     case ttm: TicTacToeMap => printMapInArray(ttm.map)
-    case paf: PlaceAlreadyFilled => print("Oh! Wrong choice, This place is taken")
+    case paf: PlaceAlreadyFilled => print(s"Oh! Wrong choice, ${paf.place} is filled")
     case GameOver => print("You lost!"); sender() ! PoisonPill
     case p :Play => p.actorRef ! p.playStep
   }
@@ -18,7 +17,8 @@ class Game extends Actor with TicTacToeLogic {
   var map = Array(0,0,0,0,0,0,0,0,0)
 
   override def receive: PartialFunction[Any, Unit] = {
-    case ps: PlayStep => if (map(ps.index - 1) == 0) {
+    case ps: PlayStep => if (ps.index >= 1 && ps.index <= 9) {
+      if (map(ps.index - 1) == 0) {
         map(ps.index - 1) = ps.player
         if (isGameOver(map)) {
           sender() ! GameOver
@@ -31,6 +31,11 @@ class Game extends Actor with TicTacToeLogic {
         sender() ! PlaceAlreadyFilled(ps.index)
       }
     }
+    else {
+      println("Invalid input ")
+      sender() ! TicTacToeMap
+    }
+  }
 }
 
 sealed trait Message
