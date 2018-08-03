@@ -14,5 +14,5 @@ class PriorityMailbox (settings: ActorSystem.Settings, config: Config)
 
       case PoisonPill   => 3
 
-      case otherwise    => 2
+      case _    => 2
     })
