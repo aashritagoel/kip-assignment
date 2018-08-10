@@ -1,0 +1,139 @@
+<style>
+
+
+	.active{
+			color: black;
+			background-color: #f8f8f8;
+			border-bottom: 2px red solid;
+			border-bottom: 2px red solid;
+	}
+	
+	.navbar-default .navbar-nav > li > a{
+		color: #777;
+
+	}
+
+	.navbar-nav>li>a {
+		line-height: 20px;
+		padding: 8px 0px 5px 0;
+		margin-right: 20px;
+		margin-top: 5px;
+	}
+
+
+
+	.css_selector {
+		background: linear-gradient(
+			rgba(20,20,20, .5), 
+			rgba(20,20,20, .5)),
+		url( "../images/background.jpg!d");
+		color: white;
+	}
+
+	.css_selector .layer > h6{
+		font-size: 4em;
+	}
+
+	.css_selector .layer > p{
+		font-size: 1em;
+		letter-spacing: 2px;
+	}
+
+	.navbar-default{
+		margin-bottom: 0px;
+		color: black;
+		padding: 5px;
+		border-radius: 0px;
+	}
+
+	.margin{
+		margin-bottom: 25px;
+		font-size: 2em;
+	}
+
+	.layer{
+		background-color: rgba(0, 0, 0, 0.5);
+		padding: 50px 0px 0px 50px;
+
+		position: relative;
+		height: 100%;
+		width: 100%;
+	}
+
+	.bg-2{
+		background-color: #f50955; /* Dark Pink */
+		color: #ffffff;
+		padding: 4%;
+	}
+
+	.bg-3{
+		color: #00000;
+		padding: 3% 20% 0% 20%;
+	}
+
+	.bg-31{
+		color: #00000;
+		padding: 3% 5% 3% 5%;
+		margin-bottom: 22px; 
+	}
+	.service-border{
+		display: block;
+		width: 80px;
+		height: 3px;
+		background: #f50955;
+		margin: 20px auto;
+	}
+
+	.btn-circle.btn-xl {
+		width: 70px;
+		height: 70px;
+		padding: 16px 16px;
+		font-size: 24px;
+		line-height: 1.33;
+		border-radius: 50%;
+		color: #f50955;
+		background-color: white;
+		border: 3px solid #eee;
+		float: left;
+		margin-top: 30px;
+	}
+
+
+	.btn-default {
+		color: #fcf8e3;
+		background-color: rgba(0,0,0,.5);
+		border-color: #fcf8e3;
+		margin-top: 6%;
+	}
+
+	.btn-custom{
+		background-color: #041223e0; 
+		color: white;
+		margin: 3px;
+		font-size: 18px;
+	}
+
+	.btn-custom:hover{
+		color: #f50955;
+	}
+
+	.btn-custom.active{
+		background-color: #f50955;
+		color: white;
+	}
+
+	.img-slot{
+		padding-bottom: 30px;
+		margin:0px;
+		width: 100%;
+		position: relative;
+	}
+	.img-responsive .image-slot > img{
+		position: cover;
+
+	}
+
+	.bg-gallery{
+		padding: 5%;
+	}
+</style>
