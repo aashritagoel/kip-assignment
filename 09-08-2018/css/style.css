@@ -1,11 +1,7 @@
-<style>
-
-
-	.active{
+.active{
 			color: black;
 			background-color: #f8f8f8;
-			border-bottom: 2px red solid;
-			border-bottom: 2px red solid;
+			border-bottom: 2px solid #f50955;
 	}
 	
 	.navbar-default .navbar-nav > li > a{
@@ -135,5 +131,4 @@
 
 	.bg-gallery{
 		padding: 5%;
-	}
-</style>
+}
