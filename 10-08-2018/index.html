@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form Validation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+  <style type="text/css">
+  body {
+   background: url("background.jpg") fixed;
+   background-size: cover;
+ }
+
+ *[role="form"] {
+  max-width: 530px;
+  padding: 15px;
+  margin: 0 auto;
+  border-radius: 0.3em;
+  background-color: #f2f2f2;
+  margin-top:60px;
+}
+
+*[role="form"] h2 { 
+  font-family: 'Open Sans' , sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  color: #000000;
+  margin-top: 5%;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <form class="form-horizontal" role="form" action="dataDisplay.html" name="myForm" onsubmit="return(validate());">
+      <h2>Registration</h2><br>
+      <div class="form-group">
+        <label for="firstName" class="col-sm-3 control-label">First Name</label>
+        <div class="col-sm-9">
+          <input type="text" id="firstName" placeholder="First Name" class="form-control" autofocus>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-9">
+            <p id="firstName_error" style="color:red"></p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+        <div class="col-sm-9">
+          <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label">Email* </label>
+        <div class="col-sm-9">
+          <input type="text" id="email" placeholder="Email" class="form-control" name= "email">
+        </div>
+        <div class="row">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-9">
+            <p id="email_error" style="color:red"></p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label">Confirm Email*</label>
+        <div class="col-sm-9">
+          <input type="email" id="confirmEmail" placeholder="Confirm Email" class="form-control">
+        </div>
+        <div class="row">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-9">
+            <p id="confirmEmail_error" style="color:red"></p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Gender</label>
+        <div class="col-sm-9">
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="radio-inline">
+                <input type="radio" id="femaleRadio" value="Female">Female
+              </label>
+            </div>
+            <div class="col-sm-4">
+              <label class="radio-inline">
+                <input type="radio" id="maleRadio" value="Male">Male
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-9">
+            <p id="gender_error" style="color:red"></p>
+          </div>
+        </div>
+      </div> <!-- /.form-group -->
+      <div class="form-group">
+        <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
+        <div class="col-sm-9">
+          <input type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control">
+
+        </div>
+        <div class="row">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-9">
+            <p id="phoneNo_error" style="color:red"></p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+          <span class="help-block">*Required fields</span>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Register</button><br>
+    </form> <!-- /form -->
+  </div> <!-- ./container -->
+   <script type="text/javascript" src="js/validation.js"></script>
+</body>
+</html>
