@@ -1,3 +1,4 @@
+/*
 package com.knoldus;
 
 import java.util.Arrays;
@@ -21,8 +22,10 @@ public class MainApplication {
         CompletableFuture<Movie> some = movieOperations.getMovie(new Long(2));
         System.out.println("get" + some.join());
 
-        /*CompletableFuture<List<Movie>> fa = movieOperations.removeMovie(new Long(3));
-        System.out.println("After removing" + fa.join());*/
+        */
+/*CompletableFuture<List<Movie>> fa = movieOperations.removeMovie(new Long(3));
+        System.out.println("After removing" + fa.join());*//*
+
 
         CompletableFuture<Map<String , Long>> movieList = movieOperations.moviesPerDirector();
         System.out.println(movieList.join());
@@ -31,3 +34,4 @@ public class MainApplication {
         System.out.println(mov.join());
     }
 }
+*/
