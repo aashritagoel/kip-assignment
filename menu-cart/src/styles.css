@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.table>thead>tr>th{
+  background: #EEE;
+}
+.plus{
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+body{
+  margin: 10px;
+}
+
+.table>tbody>tr>td{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid #EEEEEE;
+}
+
+.items{
+ border: none;
+}
+
+.category{
+  padding: 10px;
+  background-color: darkslategrey;
+  color:white;
+}
+.active{
+  padding: 10px;
+  background-color: darkslategrey;
+  color:white;
+}
+
+.notavailable{
+  background-color: antiquewhite;
+}
+
+.cart-delete{
+  background-color: darkslategrey;
+  color:white;
+  border:none;
+  margin-left: 70%;
+}

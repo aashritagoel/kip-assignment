@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-sm-8" style="height: 650px;overflow-y: scroll; ">
+
+    <div *ngFor="let category of categories" class="badge-light" >
+      <p class="category" id ={{category}} >{{category}}</p>
+     <table class="table ">
+      <tbody><tr *ngFor="let list of products | group: category"  [ngClass] ="{'notavailable' : isNotAvailable(list.availabletime)}">
+
+        <td *ngIf="list.vegflag=='veg'"><span style="color:green;">&#9679;&#8414;</span></td>
+        <td *ngIf="list.vegflag == 'nonveg'"><span style="color:red;">&#9679;&#8414;</span></td>
+
+        <td >{{list.name}} ({{list.availabletime}} )</td>
+
+        <td>{{list.price | currency: 'INR'}}</td>
+        <td>
+              <button class="btn btn-xs" [disabled] = "isNotAvailable(list.availabletime)" (click)="add(list)">
+                <i class="fa fa-plus"></i>
+              </button>
+              <button class="btn btn-danger btn-xs" [disabled] = "isNotAvailable(list.availabletime)" (click)="delete(list)">
+                <i class="fa fa-minus"></i>
+              </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <p class="category">Total
+      <button class="cart-delete" (click)="deleteCart()">
+        <i class="fa fa-trash" aria-hidden="true" ></i>
+      </button>
+    </p>
+
+    <table class="table table-bordered">
+      <tbody style="margin-top: 200px;">
+        <tr *ngFor = "let cartItem of cart">
+          <td>{{cartItem.item.name}}</td>
+          <td>x{{cartItem.quantity}}</td>
+          <td>{{cartItem.item.price * cartItem.quantity | currency: 'INR'}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <strong><p  class="text-right">Total Price: {{total | currency: 'INR' }}</p></strong>
+  </div>
+
+</div>

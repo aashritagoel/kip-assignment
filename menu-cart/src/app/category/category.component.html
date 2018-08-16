@@ -1,0 +1,9 @@
+
+<table class="table table-bordered">
+  <tbody style="margin-top: 200px;">
+  <tr ><td class="active">All</td></tr>
+  <tr *ngFor="let category of categories">
+    <td> <a [attr.href]="'#'+category">{{category}}</a></td>
+  </tr>
+  </tbody>
+</table>
