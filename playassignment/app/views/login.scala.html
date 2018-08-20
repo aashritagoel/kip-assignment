@@ -1,0 +1,29 @@
+@()(implicit requestHeader: RequestHeader, flash: Flash)
+@import helper._
+
+@main{
+<body class="back">
+<div class="layer">
+    <div class="container">
+        <form class="form-horizontal" role="form" style=" margin-top: 12%; margin-bottom: 18%;" action="/login" name="myForm" method="POST">          <br><br>
+            @CSRF.formField
+
+            <h2>LOGIN</h2><br>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="email" name="email" placeholder="User Name" required><br><br>
+                </div>
+                <div class="col-sm-12">
+                    <input type="password" name="password" placeholder="Password"><br>
+                </div>
+            </div>
+            <a href="#" class="forgot-password">Forgot Password?</a><br><br>
+            <button type="submit" class="btn btn-primary text-center">Login</button><br>          <br><br>
+
+        </form>
+    </div> <!-- ./container -->
+</div>
+
+    </body>
+    </html>
+}

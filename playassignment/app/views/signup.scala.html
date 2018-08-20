@@ -1,0 +1,130 @@
+@()(implicit requestHeader: RequestHeader, flash: Flash)
+@import helper._
+
+@main{
+    <body class="back">
+    <div class="layer">
+        <div class="container">
+            <form class="form-horizontal" role="form" action="/register" name="myForm" method="POST" onsubmit="return(validate());">
+                @CSRF.formField
+                <h2>Sign Up</h2><br>
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <input type="text" name="firstName" placeholder="First Name" required="true" onchange="nameValidate(this.value)">
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" name="middleName" placeholder="Middle Name" onchange= "nameValidate(this.value)">
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" name="lastName" placeholder="Last Name" onchange= "nameValidate(this.value)">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p id="firstName_error" ></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <input type="text" id="username" placeholder="Username"  name= "username" required="true" onchange="emailValidate(this.value)">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="number" id="age" placeholder="Age"  name= "age" min="18" max="75" required="true">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" id="email" placeholder="Email"  name= "email" required="true">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-6">
+                            <p id="email_error"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input type="password" name="password" placeholder="Password" minlength="8" required="true">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="password" name="confirmPassword" placeholder="Confirm Password" minlength="8" required="true">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                        <div class="col-sm-6">
+                            <p id="confirmPassword_error"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-1">Gender</label>
+
+                    <div class="col-sm-3 text-center">
+                        <div class="radio">
+                            <label><input type="radio" name="gender" value="male" required="true">Male</label>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="radio">
+                            <label><input type="radio" name="gender" value="female" required="true" >Female</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <p id="gender_error"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3">Hobbies: </label>
+
+                    <div class="col-sm-3 ">
+                        <div class="checkbox text-left">
+                            <label><input type="checkbox" name="hobbies" >Singing</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="hobbies">Dancing</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="hobbies">Sports</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3 ">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="hobbies" >Reading</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="hobbies" >Others</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <p id="hobbies_error"></p>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <button type="submit" class="btn btn-primary text-center">Register</button><br><br><br>
+            </form> <!-- /form -->
+        </div> <!-- ./container -->
+    </div>
+    <script src="@routes.Assets.at("javascripts/validation.js")"></script>
+
+    </body>
+    </html>
+}

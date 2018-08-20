@@ -1,0 +1,151 @@
+
+
+@()(implicit requestHeader: RequestHeader, flash: Flash)
+@import helper._
+@main{
+<body>
+<!-- Navbar of the page -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">WORKIFY</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="@routes.Application.profile" class="active">PROFILE</a></li>
+                <li><a href="@routes.Application.assignment">VIEW ASSIGNMENTS</a></li>
+                <li><button class="btn login"><a href="#">LOGOUT</a></button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- 	First Container-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="css_selector" style="height: 200px;">
+            <div class="layer text-center">
+                <h6>WORKIFY PROFILE</h6>
+                <p>UPDATE YOUR WORKIFY PROFILE</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Second Container -->
+<div class="container">
+    <form class="form-horizontal" role="form" action="dataDisplay.html" name="myForm" onsubmit="return(validate());">
+        <div class="form-group">
+
+            <div class="col-sm-4">
+                <input type="text" id="firstName" placeholder="First Name" required>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" id="middleName" placeholder="Middle Name">
+            </div>
+            <div class="col-sm-4">
+                <input type="text" id="lastName" placeholder="Last Name">
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                    <p id="firstName_error" style="color:red"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input type="text" id="username" placeholder="Username"  name= "username">
+            </div>
+            <div class="col-sm-2">
+                <input type="number" id="age" placeholder="Age"  name= "age" min="18" max="75">
+            </div>
+            <div class="col-sm-6">
+                <input type="text" id="email" placeholder="Email"  name= "email">
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                    <p id="email_error" style="color:red"></p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <input type="password" id="password" placeholder="Password" >
+            </div>
+            <div class="col-sm-6">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" >
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                    <p id="confirmPassword_error" style="color:red"></p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">Gender</label>
+
+            <div class="col-sm-3 text-center">
+                <div class="radio">
+                    <label><input type="radio" name="gender" checked>Male</label>
+                </div>
+
+            </div>
+            <div class="col-sm-3 ">
+                <div class="radio">
+                    <label><input type="radio" name="gender" checked>Female</label>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                    <p id="gender_error" style="color:red"></p>
+                </div>
+            </div>
+        </div> <!-- /.form-group -->
+
+        <div class="form-group">
+            <label class="col-sm-3">Hobbies: </label>
+
+            <div class="col-sm-3 ">
+                <div class="checkbox text-left">
+                    <label><input type="checkbox" name="hobbies" >Singing</label>
+                </div>
+            </div>
+            <div class="col-sm-3 ">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="hobbies">Dancing</label>
+                </div>
+            </div>
+            <div class="col-sm-3 ">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="hobbies">Sports</label>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3 ">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="hobbies" >Reading</label>
+                </div>
+            </div>
+            <div class="col-sm-3 ">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="hobbies" >Others</label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary text-center">Update</button><br>
+    </form> <!-- /form -->
+</div> <!-- ./container -->
+}

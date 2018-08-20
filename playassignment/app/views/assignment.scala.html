@@ -1,0 +1,76 @@
+
+
+@()(implicit requestHeader: RequestHeader, flash: Flash)
+@import helper._
+@main{
+<body>
+<!-- Navbar of the page -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="color: #f50955; font-weight: 1000; font-family: "Times New Roman", Times, serif>WORKIFY</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="@routes.Application.profile" >PROFILE</a></li>
+                <li><a href="@routes.Application.assignment" class="active">VIEW ASSIGNMENTS</a></li>
+                <li><button class="btn login"><a href="#">LOGOUT</a></button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- 	First Container-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="css_selector" style="height: 200px;">
+            <div class="layer text-center">
+                <h6>WORKIFY ASSIGNMENTS</h6>
+                <p>VIEW WORKIFY ASSIGNMENTS UPLOADED BY ADMIN</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Second Container -->
+<div class="container">
+    <table class="table text-center">
+        <thead ><th class="text-center">Title</th>
+
+        <th class="text-center">Description</th></thead>
+        <tbody>
+        <tr >
+
+
+            <td >Title</td>
+
+            <td>Description</td>
+
+        </tr>
+        <tr >
+
+
+            <td >Title</td>
+
+            <td>Description</td>
+
+        </tr>
+        <tr >
+
+
+            <td >Title</td>
+
+            <td>Description</td>
+
+        </tr>
+        </tbody>
+    </table>
+</div> <!-- ./container -->
+</body>
+</html>
+}
