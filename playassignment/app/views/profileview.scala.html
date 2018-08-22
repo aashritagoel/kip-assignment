@@ -1,6 +1,6 @@
 @(regForm: Form[forms.User], user: forms.UserRepo)(implicit requestHeader: RequestHeader, flash: Flash)
 @import helper._
-@userview("@user.username", "WORKIFY PROFILE", "UPDATE YOUR WORKIFY PROFILE"){
+@userview(user.userName, "WORKIFY PROFILE", "UPDATE YOUR WORKIFY PROFILE"){
 <div class="container">
     <form class="form-horizontal" role="form" action="/update/@user.email" name="myForm" method="POST" onsubmit="return(validate());">
         @CSRF.formField

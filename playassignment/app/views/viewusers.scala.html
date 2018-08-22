@@ -1,6 +1,6 @@
-@(users: Seq[forms.UserRepo])(implicit requestHeader: RequestHeader, flash: Flash)
+@(users: Seq[forms.UserRepo], user: forms.UserRepo)(implicit requestHeader: RequestHeader, flash: Flash)
 @import helper._
-@userview("@user.username", "WORKIFY USERS", "VIEW WORKIFY USERS ACCESSING THE ASSIGNMENTS"){
+@userview(user.userName, "WORKIFY USERS", "VIEW WORKIFY USERS ACCESSING THE ASSIGNMENTS"){
 <div class="container">
     <table class="table text-center">
         <thead >

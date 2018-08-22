@@ -2,15 +2,15 @@
 @header()
 <body>
 @navheader()
-<li><a href="@routes.Application.profile" class="active">PROFILE</a></li>
+<li ><a href="@routes.Application.profile" >PROFILE</a></li>
 <li><a href="@routes.AssignmentHandler.viewAssignment">VIEW ASSIGNMENTS</a></li>
-@if(username != "admin"){
+@if(username == "admin"){
     <li><a href="@routes.Application.addAssignment">ADD ASSIGNMENT</a></li>
     <li><a href="@routes.Application.viewUsers">VIEW USERS</a></li>
 }
-<li>
-    <button class="btn login"><a href="#">LOGOUT</a></button>
-</li>
+
+    <button class="btn login"><a href="@routes.Application.logout">LOGOUT</a></button>
+
 @navfooter()
 
 <div class="container-fluid">
@@ -24,6 +24,8 @@
     </div>
 </div>
 @content
+<script src="@routes.Assets.at("javascripts/redirection.js")"></script>
+
 </body>
 </html>
 

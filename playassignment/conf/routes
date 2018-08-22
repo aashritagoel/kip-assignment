@@ -2,6 +2,7 @@
 GET        /                                    controllers.Application.index
 GET        /signup                              controllers.Application.signUp
 GET        /login                               controllers.Application.login
+GET        /logout                              controllers.Application.logout
 GET        /assignment                          controllers.AssignmentHandler.viewAssignment
 GET        /viewusers                           controllers.Application.viewUsers
 GET        /addassignment                       controllers.Application.addAssignment

@@ -1,6 +1,6 @@
-@(record: Seq[forms.AssignmentRepo])(implicit requestHeader: RequestHeader, flash: Flash)
+@(record: Seq[forms.AssignmentRepo], user: forms.UserRepo)(implicit requestHeader: RequestHeader, flash: Flash)
 @import helper._
-@userview("@user.username", "WORKIFY ASSIGNMENTS", "VIEW WORKIFY ASSIGNMENTS UPLOADED BY ADMIN"){
+@userview(user.userName, "WORKIFY ASSIGNMENTS", "VIEW WORKIFY ASSIGNMENTS UPLOADED BY ADMIN"){
 <div class="container">
     <table class="table text-center">
         <thead >
@@ -14,7 +14,9 @@
             <tr >
                 <td >@assignment.title</td>
                 <td>@assignment.description</td>
+                @if(user.userName == "admin"){
                 <td><button><a href="@routes.AssignmentHandler.deleteAssignment(assignment.id)">Delete</a></button></td>
+                }
             </tr>
         }
 

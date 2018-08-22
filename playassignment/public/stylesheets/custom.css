@@ -6,6 +6,7 @@
 
 	.navbar-default .navbar-nav > li > a{
 		color: #777;
+		text-decoration: none;
 
 	}
 
@@ -16,8 +17,6 @@
 
 	.navbar-nav>li>a {
 		line-height: 20px;
-		padding: 8px 0px 5px 0;
-		margin-right: 20px;
 		margin-top: 5px;
 	}
 
@@ -160,6 +159,8 @@
 	.signin{
 		border: 1px solid #f50955;
 		background-color: white;
+		margin-top: 10px;
+
 	}
 
 	.signin>a{
@@ -168,7 +169,8 @@
 
 	.login{
 		background-color: #f50955;
-				margin-right: 10px;
+		margin-right: 10px;
+		margin-top: 10px;
 
 	}
 
@@ -177,6 +179,7 @@
 	}
 
 	.login>a:hover{
+	color: white;
 		font-size: 15px;
 		text-decoration: none;
 	}
