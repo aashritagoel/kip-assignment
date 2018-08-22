@@ -5,7 +5,7 @@
     <body class="back">
     <div class="layer">
         <div class="container text-center">
-            <h2 class="reg-success">Registration successful !</h2><br><br>
+            <h2 class="reg-success">@flash.get("success").getOrElse("Error while reseting!")</h2><br><br>
             <a href="@routes.Application.login">Login to continue</a> <br><br><br>
 
         </div>

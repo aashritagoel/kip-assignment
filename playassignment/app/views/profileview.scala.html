@@ -1,55 +1,20 @@
-
-
-@()(implicit requestHeader: RequestHeader, flash: Flash)
+@(regForm: Form[forms.User], user: forms.UserRepo)(implicit requestHeader: RequestHeader, flash: Flash)
 @import helper._
-@main{
-<body>
-<!-- Navbar of the page -->
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">WORKIFY</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="@routes.Application.profile" class="active">PROFILE</a></li>
-                <li><a href="@routes.Application.assignment">VIEW ASSIGNMENTS</a></li>
-                <li><button class="btn login"><a href="#">LOGOUT</a></button></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- 	First Container-->
-<div class="container-fluid">
-    <div class="row">
-        <div class="css_selector" style="height: 200px;">
-            <div class="layer text-center">
-                <h6>WORKIFY PROFILE</h6>
-                <p>UPDATE YOUR WORKIFY PROFILE</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Second Container -->
+@userview("@user.username", "WORKIFY PROFILE", "UPDATE YOUR WORKIFY PROFILE"){
 <div class="container">
-    <form class="form-horizontal" role="form" action="dataDisplay.html" name="myForm" onsubmit="return(validate());">
+    <form class="form-horizontal" role="form" action="/update/@user.email" name="myForm" method="POST" onsubmit="return(validate());">
+        @CSRF.formField
+
         <div class="form-group">
 
             <div class="col-sm-4">
-                <input type="text" id="firstName" placeholder="First Name" required>
+                <input type="text" id="firstName" placeholder="First Name" name="firstName" value="@user.firstName" required>
             </div>
             <div class="col-sm-4">
-                <input type="text" id="middleName" placeholder="Middle Name">
+                <input type="text" id="middleName" placeholder="Middle Name" name="middleName" value="@user.middleName">
             </div>
             <div class="col-sm-4">
-                <input type="text" id="lastName" placeholder="Last Name">
+                <input type="text" id="lastName" placeholder="Last Name" name="lastName" value="@user.lastName">
             </div>
             <div class="row">
                 <div class="col-sm-3"></div>
@@ -61,13 +26,13 @@
 
         <div class="form-group">
             <div class="col-sm-4">
-                <input type="text" id="username" placeholder="Username"  name= "username">
+                <input type="text" id="username" placeholder="Username"  name= "username" value="@user.userName">
             </div>
             <div class="col-sm-2">
-                <input type="number" id="age" placeholder="Age"  name= "age" min="18" max="75">
+                <input type="number" id="age" placeholder="Age"  name= "age" min="18" max="75" value="@user.age">
             </div>
             <div class="col-sm-6">
-                <input type="text" id="email" placeholder="Email"  name= "email">
+                <input type="text" id="email" placeholder="Email"  name= "email" value="@user.email">
             </div>
             <div class="row">
                 <div class="col-sm-3"></div>
@@ -78,10 +43,10 @@
         </div>
         <div class="form-group">
             <div class="col-sm-6">
-                <input type="password" id="password" placeholder="Password" >
+                <input type="password" name="passwordGroup.password" id="password" placeholder="Password" value="@user.password">
             </div>
             <div class="col-sm-6">
-                <input type="password" id="confirmPassword" placeholder="Confirm Password" >
+                <input type="password" name="passwordGroup.confirmPassword" id="confirmPassword" placeholder="Confirm Password" value="@user.password">
             </div>
             <div class="row">
                 <div class="col-sm-3"></div>
@@ -95,7 +60,7 @@
 
             <div class="col-sm-3 text-center">
                 <div class="radio">
-                    <label><input type="radio" name="gender" checked>Male</label>
+                    <label><input type="radio" name="gender">Male</label>
                 </div>
 
             </div>

@@ -1,4 +1,4 @@
-@()(implicit requestHeader: RequestHeader, flash: Flash)
+@(regForm: Form[forms.User])(implicit requestHeader: RequestHeader, flash: Flash)
 @import helper._
 
 @main{
@@ -10,17 +10,17 @@
                 <h2>Sign Up</h2><br>
                 <div class="form-group">
                     <div class="col-sm-4">
-                        <input type="text" name="firstName" placeholder="First Name" required="true" onchange="nameValidate(this.value)">
+                        <input type="text" name="firstName" id="firstName" placeholder="First Name" required="true" onchange="nameValidate(this.value)">
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" name="middleName" placeholder="Middle Name" onchange= "nameValidate(this.value)">
+                        <input type="text" name="middleName" id="middleName" placeholder="Middle Name" onchange= "nameValidate(this.value)">
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" name="lastName" placeholder="Last Name" onchange= "nameValidate(this.value)">
+                        <input type="text" name="lastName" id="lastName" placeholder="Last Name" onchange= "nameValidate(this.value)">
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <p id="firstName_error" ></p>
+                            <p>@regForm("firstName").errors.map(error => error.messages)</p>
                         </div>
                     </div>
                 </div>
@@ -45,16 +45,16 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <input type="password" name="password" placeholder="Password" minlength="8" required="true">
+                        <input type="password" name="passwordGroup.password" placeholder="Password" minlength="8" required="true">
                     </div>
                     <div class="col-sm-6">
-                        <input type="password" name="confirmPassword" placeholder="Confirm Password" minlength="8" required="true">
+                        <input type="password" name="passwordGroup.confirmPassword" placeholder="Confirm Password" minlength="8" required="true">
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                         </div>
                         <div class="col-sm-6">
-                            <p id="confirmPassword_error"></p>
+                            <p>@regForm("passwordGroup").errors.map(error => error.messages)</p>
                         </div>
                     </div>
                 </div>

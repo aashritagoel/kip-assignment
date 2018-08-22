@@ -1,6 +1,31 @@
-@(navcontent:Html, content:Html)(implicit requestHeader: RequestHeader, flash: Flash)
+@(username : String, title: String, description: String)(content:Html)(implicit requestHeader: RequestHeader, flash: Flash)
 @header()
+<body>
 @navheader()
-@navcontent
+<li><a href="@routes.Application.profile" class="active">PROFILE</a></li>
+<li><a href="@routes.AssignmentHandler.viewAssignment">VIEW ASSIGNMENTS</a></li>
+@if(username != "admin"){
+    <li><a href="@routes.Application.addAssignment">ADD ASSIGNMENT</a></li>
+    <li><a href="@routes.Application.viewUsers">VIEW USERS</a></li>
+}
+<li>
+    <button class="btn login"><a href="#">LOGOUT</a></button>
+</li>
 @navfooter()
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="css_selector">
+            <div class="page-layer text-center">
+                <h6>@title</h6>
+                <p>@description</p>
+            </div>
+        </div>
+    </div>
+</div>
 @content
+</body>
+</html>
+
+
+

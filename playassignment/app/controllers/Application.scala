@@ -1,7 +1,6 @@
 package controllers
 
-import akka.Done
-import forms.{LoginForm, ResetForm, User, UserForm}
+import forms._
 import javax.inject.Inject
 import models.CacheRepo
 import play.api.mvc._
@@ -20,20 +19,39 @@ class Application @Inject()(controllerComponent: ControllerComponents,
   }
 
   def signUp: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(Ok(views.html.signup()))
+    Future.successful(Ok(views.html.signup(userForm.userForm)))
+  }
+
+  def resetView: Action[AnyContent] = Action.async { implicit request =>
+    Future.successful(Ok(views.html.reset(resetForm.resetForm)))
+  }
+
+  def addAssignment: Action[AnyContent] = Action.async { implicit request =>
+    Future.successful(Ok(views.html.addassignment()))
+  }
+
+  def viewUsers: Action[AnyContent] = Action.async { implicit request =>
+    cacheRepo.getAllUsers.map { data =>
+      Ok(views.html.viewusers(data))
+    }
+  }
+
+  def profile: Action[AnyContent] = Action.async { implicit request =>
+    Future.successful(Ok(views.html.profileview(userForm.userForm, UserRepo(0, "First", Some("Middle"), Some("Last"), "User", 18, "example@domain.com", "12345678", "Female"))))
   }
 
   def register: Action[AnyContent] = Action.async { implicit request =>
     userForm.userForm.bindFromRequest.fold(
       formWithError => {
-        Future.successful(BadRequest(s"${formWithError.errors}"))
+        Future.successful(Ok(views.html.signup(formWithError)))
       },
       data => {
         cacheRepo.get(data.email).flatMap { optionalUser =>
           optionalUser.fold {
-            cacheRepo.store(data).map {
-              case Done => Redirect(routes.Application.success())
-              case _ => InternalServerError("Something went wrong!")
+            val dbPayload = UserRepo(0, data.firstName, data.middleName, data.lastName, data.userName, data.age, data.email, data.password.password, data.gender)
+            cacheRepo.store(dbPayload).map { _ =>
+              Redirect(routes.Application.success()).flashing(
+                "success" -> "User has been registered.")
             }
           } { _ =>
             Future.successful(Ok("User already exists."))
@@ -52,35 +70,27 @@ class Application @Inject()(controllerComponent: ControllerComponents,
       optionalUser.fold {
         NotFound("User doesn't exist!")
       } { user =>
-        Ok(s"${user.email}, ${user.hobbies}, ${user.gender}, ${user.age}")
+        Ok(s"${user.email}, ${user.gender}, ${user.age}")
       }
     }
   }
 
   def login: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(Ok(views.html.login()))
+    Future.successful(Ok(views.html.login(loginForm.loginForm)))
   }
-
-  def profile: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(Ok(views.html.profile()))
-  }
-  def assignment: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(Ok(views.html.assignment()))
-  }
-
 
   def authenticate: Action[AnyContent] = Action.async { implicit request =>
     loginForm.loginForm.bindFromRequest.fold(
       formWithError => {
-        Future.successful(BadRequest(s"${formWithError.errors}"))
+        Future.successful(Ok(views.html.login(formWithError)))
       },
-      user => {
-        cacheRepo.get(user._1).map { optionalUser =>
+      data => {
+        cacheRepo.get(data._1).map { optionalUser =>
           optionalUser.fold {
             NotFound("User doesn't exist!")
-          } { u => {
-            if (u.password == user._2) {
-              Redirect(routes.Application.profile)
+          } { user => {
+            if (user.password == data._2) {
+              Ok(views.html.profileview(userForm.userForm, user))
             }
             else {
               BadRequest(s"Username or Password is incorrect!")
@@ -91,5 +101,53 @@ class Application @Inject()(controllerComponent: ControllerComponents,
       }
     )
   }
+
+  def update(email: String): Action[AnyContent] = Action.async { implicit request =>
+    userForm.userForm.bindFromRequest.fold(
+      formWithError => {
+        println(formWithError)
+        cacheRepo.get(email).map { optionalUser =>
+          optionalUser.fold {
+            BadRequest("Not found!")
+          } { user =>
+            Ok(views.html.profileview(formWithError, user))
+          }
+        }
+      },
+      data => {
+        cacheRepo.get(email).flatMap { optionalUser =>
+          optionalUser.fold {
+            Future.successful(NotFound("User doesn't exist!"))
+          } { user =>
+            val dbPayload = UserRepo(user.id, data.firstName, data.middleName, data.lastName, data.userName, data.age, data.email, data.password.password, data.gender)
+            cacheRepo.update(email, dbPayload).map { _ =>
+              Redirect(routes.Application.success()).flashing(
+                "success" -> "User has been updated successfully.")
+            }
+          }
+        }
+      }
+    )
+  }
+
+  def resetPassword: Action[AnyContent] = Action.async { implicit request =>
+    resetForm.resetForm.bindFromRequest.fold(
+      formWithError => {
+        Future.successful(Ok(views.html.reset(formWithError)))
+      },
+      resetParameters => {
+        cacheRepo.get(resetParameters.email).flatMap { optionalUser =>
+          optionalUser.fold {
+            Future.successful(NotFound("User doesn't exist!"))
+          } { user =>
+            cacheRepo.updatePassword(resetParameters.email, resetParameters.password.password).map { _ =>
+              Redirect(routes.Application.success()).flashing(
+                "success" -> "Password has been reset.")
+            }
+          }
+        }
+      }
+    )
+      }
 
 }

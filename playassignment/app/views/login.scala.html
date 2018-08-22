@@ -1,11 +1,11 @@
-@()(implicit requestHeader: RequestHeader, flash: Flash)
+@(regForm: Form[(String, String)])(implicit requestHeader: RequestHeader, flash: Flash)
 @import helper._
 
 @main{
 <body class="back">
 <div class="layer">
     <div class="container">
-        <form class="form-horizontal" role="form" style=" margin-top: 12%; margin-bottom: 18%;" action="/login" name="myForm" method="POST">          <br><br>
+        <form class="form-horizontal" role="form" action="/login" name="myForm" method="POST">          <br><br>
             @CSRF.formField
 
             <h2>LOGIN</h2><br>
@@ -14,10 +14,10 @@
                     <input type="email" name="email" placeholder="User Name" required><br><br>
                 </div>
                 <div class="col-sm-12">
-                    <input type="password" name="password" placeholder="Password"><br>
+                    <input type="password" name="password" placeholder="Password" required><br>
                 </div>
             </div>
-            <a href="#" class="forgot-password">Forgot Password?</a><br><br>
+            <a href="@routes.Application.resetPassword" class="forgot-password">Forgot Password?</a><br><br>
             <button type="submit" class="btn btn-primary text-center">Login</button><br>          <br><br>
 
         </form>

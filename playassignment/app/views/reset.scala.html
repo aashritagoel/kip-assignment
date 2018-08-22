@@ -1,4 +1,4 @@
-@()(implicit requestHeader: RequestHeader, flash: Flash)
+@(regForm: Form[forms.Reset])(implicit requestHeader: RequestHeader, flash: Flash)
 @import helper._
 
 @main{
@@ -14,10 +14,15 @@
                     <input type="email" name="email" placeholder="Email" required><br><br>
                 </div>
                 <div class="col-sm-12">
-                    <input type="password" name="password" placeholder="Password" required><br><br>
+                    <input type="password" name="passwordGroup.password" placeholder="Password" required><br><br>
                 </div>
                 <div class="col-sm-12">
-                    <input type="password" name="confirmPassword" placeholder="Confirm Password" required><br><br>
+                    <input type="password" name="passwordGroup.confirmPassword" placeholder="Confirm Password" required><br><br>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>@regForm("passwordGroup").errors.map(error => error.messages)</p>
+                    </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary text-center">Reset</button><br><br>

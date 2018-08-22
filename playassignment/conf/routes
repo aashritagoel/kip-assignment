@@ -1,11 +1,18 @@
 # Routes
-GET        /                                     controllers.Application.index
-GET        /signup                             controllers.Application.signUp
-GET        /login                             controllers.Application.login
-POST        /login                             controllers.Application.authenticate
+GET        /                                    controllers.Application.index
+GET        /signup                              controllers.Application.signUp
+GET        /login                               controllers.Application.login
+GET        /assignment                          controllers.AssignmentHandler.viewAssignment
+GET        /viewusers                           controllers.Application.viewUsers
+GET        /addassignment                       controllers.Application.addAssignment
+POST       /login                               controllers.Application.authenticate
 POST       /register                            controllers.Application.register
-GET       /register                            controllers.Application.success
-GET        /profile                            controllers.Application.profile
-GET        /assignment                            controllers.Application.assignment
-GET        /getUser/:email                        controllers.Application.getUser(email:String)
-GET        /public/*file                         controllers.Assets.at(path="/public", file)
+POST       /reset                               controllers.Application.resetPassword
+GET        /reset                               controllers.Application.resetView
+POST       /record                              controllers.AssignmentHandler.recordAssignment
+POST       /update/:email                       controllers.Application.update(email: String)
+GET        /register                            controllers.Application.success
+GET        /profile                             controllers.Application.profile
+GET        /getUser/:email                      controllers.Application.getUser(email:String)
+GET        /public/*file                        controllers.Assets.at(path="/public", file)
+GET         /delete/:id                         controllers.AssignmentHandler.deleteAssignment(id: Long)
