@@ -15,39 +15,42 @@ class UserServiceImpl extends UserService {
   }
   }
 
-  private def isUserPresent(id: Int): Boolean = {
-    UserRecord.userList.exists(user => user.id == id)
+  private def getUserById(id: Int): Option[User] = {
+    UserRecord.userList.find(user => user.id == id)
   }
 
   override def addUser(): ServiceCall[User, String] = ServiceCall { user => {
-    if (isUserPresent(user.id)) {
-      Future.successful("User already exists. Make sure the id is unique")
-    } else {
-      UserRecord.userList += user
-      Future.successful("User added Successfully")
+    val isUserPresent = getUserById(user.id)
+    val addStatus = isUserPresent match {
+      case Some(_) => "User already exists. Make sure the id is unique"
+      case None =>
+        UserRecord.userList += user
+        s"User(${user.id}, ${user.name}) added Successfully"
     }
+    Future.successful(addStatus)
   }
   }
 
   override def deleteUser(id: Int): ServiceCall[NotUsed, String] = ServiceCall { _ => {
-    if (isUserPresent(id)) {
-      UserRecord.userList -= UserRecord.userList.find(user => user.id == id).get
-      Future.successful("User deleted Successfully")
-    } else {
-      Future.successful("User doesn't exist")
+    val isUserPresent = getUserById(id)
+    val deleteStatus = isUserPresent match {
+      case Some(user) => UserRecord.userList -= user
+        s"User(${user.id}, ${user.name}) deleted successfully"
+      case None => "User doesn't exist"
     }
+    Future.successful(deleteStatus)
   }
   }
 
   override def updateUser(id: Int, updatedName: String): ServiceCall[NotUsed, String] = ServiceCall { _ => {
-    if (isUserPresent(id)) {
-      val userToBeUpdated = UserRecord.userList.find(user => user.id == id).get
-      UserRecord.userList -= userToBeUpdated
-      UserRecord.userList += User(userToBeUpdated.id, updatedName)
-      Future.successful("User updated Successfully")
-    } else {
-      Future.successful("User doesn't exist")
+    val isUserPresent = getUserById(id)
+    val updateStatus = isUserPresent match {
+      case Some(user) => UserRecord.userList -= user
+        UserRecord.userList += User(user.id, updatedName)
+        s"User(${user.id}, $updatedName) updated successfully"
+      case None => "User doesn't exist"
     }
+    Future.successful(updateStatus)
   }
   }
 

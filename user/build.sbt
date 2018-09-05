@@ -21,8 +21,6 @@ lazy val `user-impl` = (project in file("user-impl"))
   .enablePlugins(LagomScala)
   .settings(
     libraryDependencies ++= Seq(
-      lagomScaladslPersistenceCassandra,
-      lagomScaladslKafkaBroker,
       lagomScaladslTestKit,
       macwire,
       scalaTest
