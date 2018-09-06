@@ -1,0 +1,2 @@
+[2018-09-05 23:06:35,889] TRACE Controller 0 epoch 1 received response {error_code=0} for a request sent to broker knoldus-Vostro-3546:9092 (id: 0 rack: null) (state.change.logger)
+[2018-09-05 23:16:34,812] TRACE Controller 0 epoch 2 received response {error_code=0} for a request sent to broker knoldus-Vostro-3546:9092 (id: 0 rack: null) (state.change.logger)
